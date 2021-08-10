@@ -4,18 +4,20 @@ import { Component, State, h, Host } from '@stencil/core';
   tag: 'my-component',
 })
 export class MyComponent {
-  @State() count = 0;
+  @State() enabled = true;
 
   updateState() {
-    this.count = this.count + 1;
+    this.enabled = !this.enabled;
   }
 
   render() {
     return <Host>
       <div style={{ background: '#eee', margin: '1em', padding: '1em' }}>
         <button onClick={() => this.updateState()}>Update State</button>
-        <p>Count: {this.count}</p>
-        <slot />
+
+        <focus-trap enabled={this.enabled}>
+          <slot />
+        </focus-trap>
       </div>
     </Host>;
   }

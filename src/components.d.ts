@@ -6,10 +6,22 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface FocusTrap {
+        /**
+          * Manually enable or disable the trap.
+         */
+        "enabled": boolean;
+    }
     interface MyComponent {
     }
 }
 declare global {
+    interface HTMLFocusTrapElement extends Components.FocusTrap, HTMLStencilElement {
+    }
+    var HTMLFocusTrapElement: {
+        prototype: HTMLFocusTrapElement;
+        new (): HTMLFocusTrapElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -17,13 +29,21 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "focus-trap": HTMLFocusTrapElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface FocusTrap {
+        /**
+          * Manually enable or disable the trap.
+         */
+        "enabled"?: boolean;
+    }
     interface MyComponent {
     }
     interface IntrinsicElements {
+        "focus-trap": FocusTrap;
         "my-component": MyComponent;
     }
 }
@@ -31,6 +51,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
