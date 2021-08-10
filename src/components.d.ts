@@ -12,7 +12,7 @@ export namespace Components {
     interface MyComponent {
     }
     interface NestedComponent {
-        "state": any;
+        "state": boolean;
     }
 }
 declare global {
@@ -47,7 +47,7 @@ declare namespace LocalJSX {
     interface MyComponent {
     }
     interface NestedComponent {
-        "state"?: any;
+        "state"?: boolean;
     }
     interface IntrinsicElements {
         "focus-trap": FocusTrap;

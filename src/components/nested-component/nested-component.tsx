@@ -4,10 +4,9 @@ import { Component, Host, Prop, h } from '@stencil/core';
   tag: 'nested-component',
 })
 export class NestedComponent {
-  @Prop() state;
+  @Prop() state: boolean;
 
   render() {
-
     return (
       <Host>
         <div>State: {this.state.toString()}</div>
