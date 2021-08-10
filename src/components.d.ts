@@ -7,12 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface FocusTrap {
-        /**
-          * Manually enable or disable the trap.
-         */
-        "enabled": boolean;
+        "state": any;
     }
     interface MyComponent {
+    }
+    interface NestedComponent {
+        "state": any;
     }
 }
 declare global {
@@ -28,23 +28,31 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLNestedComponentElement extends Components.NestedComponent, HTMLStencilElement {
+    }
+    var HTMLNestedComponentElement: {
+        prototype: HTMLNestedComponentElement;
+        new (): HTMLNestedComponentElement;
+    };
     interface HTMLElementTagNameMap {
         "focus-trap": HTMLFocusTrapElement;
         "my-component": HTMLMyComponentElement;
+        "nested-component": HTMLNestedComponentElement;
     }
 }
 declare namespace LocalJSX {
     interface FocusTrap {
-        /**
-          * Manually enable or disable the trap.
-         */
-        "enabled"?: boolean;
+        "state"?: any;
     }
     interface MyComponent {
+    }
+    interface NestedComponent {
+        "state"?: any;
     }
     interface IntrinsicElements {
         "focus-trap": FocusTrap;
         "my-component": MyComponent;
+        "nested-component": NestedComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -53,6 +61,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "nested-component": LocalJSX.NestedComponent & JSXBase.HTMLAttributes<HTMLNestedComponentElement>;
         }
     }
 }

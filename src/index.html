@@ -12,28 +12,10 @@
 
 <body>
   <my-component>
-    <nested-component>
-      <p>This iFrame works just fine when state updates</p>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/kx_LgXd0uAk" title="YouTube video player"
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </nested-component>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/kx_LgXd0uAk" title="YouTube video player"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
   </my-component>
-
-  <button>Dynamically add component</button>
-
-  <script>
-    document.querySelector('button').addEventListener('click', () => {
-      const component = document.createElement('my-component');
-      component.innerHTML = `
-        <p>This iFrame reloads when state updates, breaking video playback</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/kx_LgXd0uAk" title="YouTube video player"
-          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-      `;
-      document.body.appendChild(component);
-    });
-  </script>
 </body>
 
 </html>

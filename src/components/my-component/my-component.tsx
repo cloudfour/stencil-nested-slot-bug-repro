@@ -4,20 +4,20 @@ import { Component, State, h, Host } from '@stencil/core';
   tag: 'my-component',
 })
 export class MyComponent {
-  @State() enabled = true;
+  @State() state = true;
 
   updateState() {
-    this.enabled = !this.enabled;
+    this.state = !this.state;
   }
 
   render() {
     return <Host>
       <div style={{ background: '#eee', margin: '1em', padding: '1em' }}>
-        <button onClick={() => this.updateState()}>Update State</button>
-
-        <focus-trap enabled={this.enabled}>
+        <nested-component state={this.state}>
           <slot />
-        </focus-trap>
+        </nested-component>
+
+        <button onClick={() => this.updateState()}>Update State</button>
       </div>
     </Host>;
   }
