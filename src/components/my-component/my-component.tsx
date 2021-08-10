@@ -11,6 +11,7 @@ export class MyComponent {
   }
 
   render() {
+    console.log('parent render');
     return <Host>
       <div style={{ background: '#eee', margin: '1em', padding: '1em' }}>
         <nested-component state={this.state}>
